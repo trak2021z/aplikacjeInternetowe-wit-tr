@@ -4,17 +4,18 @@
     <title>Rejestracja</title>
 </head>
 <body>
-<form role="form" th:action="@{/sign-up}" th:method="post" th:object="${user}">
-    <lable>Name</lable>
-    <input type="text" id="name" name="Nazwa użytkownika" th:field="*{nazwa}">
+<h1>Załóż konto</h1>
+<form role="form" th:action="@{/sign-up}" th:method="post" th:object="user">
+    <lable>Nazwa użytkownika</lable>
+    <input type="text" id="name" name="name" th:field="*{nazwa}">
 
     <lable>Email</lable>
-    <input type="text" id="email" name="E-mail" th:field="*{email}">
+    <input type="text" id="email" name="email" th:field="*{email}">
 
-    <lable>Password</lable>
-    <input type="password" id="password" name="Hasło" th:field="*{pass}">
-
-    <input type="submit">
+    <lable>Hasło</lable>
+    <input type="password" id="password" name="password" th:field="*{pass}">
+    <input type="submit" th:value="Zarejestruj">
 </form>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.witon.jakub.ai.user;
 import com.witon.jakub.ai.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,10 @@ public class UserController {
 
     private final UserService userService;
 
-    private final ConfirmationTokenService confirmationTokenService;
-
-    @GetMapping("/sign-in")
+    @GetMapping("/login")
     String signIn() {
 
-        return "sign-in";
+        return "login";
     }
 
     @GetMapping("/sign-up")
@@ -36,15 +35,15 @@ public class UserController {
 
         return "redirect:/sign-in";
     }
-
-    @GetMapping("/sign-up/confirm")
-    String confirmMail(@RequestParam("token") String token) {
-
-        Optional<ConfirmationToken> optionalConfirmationToken = confirmationTokenService.findConfirmationTokenByToken(token);
-
-        optionalConfirmationToken.ifPresent(userService::confirmUser);
-
-        return "redirect:/sign-in";
+    @GetMapping("/")
+    public String xd() {
+        return "Witam";
+    }
+    @GetMapping("/welcome")
+    String zalogowany()
+    {
+        System.out.println("XD");
+        return "welcome";
     }
 
 }
