@@ -30,13 +30,13 @@ public class UserController {
     }
     @GetMapping("/")
     public String xd() {
-        return "Witam";
+        return "redirect:/budget-list";
     }
     @GetMapping("/welcome")
     String zalogowany()
     {
         System.out.println("XD");
-        return "welcome";
+        return "redirect:/budget-list";
     }
 
 }

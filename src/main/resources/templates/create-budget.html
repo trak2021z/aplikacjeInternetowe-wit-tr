@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/create-budget}" th:object="${budget}" method="post">
+    <label for="nazwa">Nazwa</label>
+    <input type="text" th:field="*{nazwa}" id="nazwa" placeholder="Nazwa budżetu">
+    <span th:if="${#fields.hasErrors('nazwa')}" th:errors="*{nazwa}"></span>
+    <input type="submit" value="Utwórz">
+</form>
+</body>
+</html>

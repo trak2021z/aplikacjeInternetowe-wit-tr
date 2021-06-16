@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
-    private final ExpenseCategory expenseCategory;
+    private final ExpenseCategoryRepository expenseCategoryRepository;
     public void loadExpensesByDate(LocalDate start, LocalDate end) {
         expenseRepository.findExpensesByDateIsBetween(start,end);
     }
@@ -29,5 +31,12 @@ public class ExpenseService {
     public void deleteExpense(Expense expense) {
         expenseRepository.delete(expense);
     }
-
+    public List<Expense> loadAllExpenses() {
+        return StreamSupport.stream(expenseRepository.findAll().spliterator(),false)
+        .collect(Collectors.toList());
+    }
+    public List<ExpenseCategory> loadAllCategories() {
+        return StreamSupport.stream(expenseCategoryRepository.findAll().spliterator(),false)
+                .collect(Collectors.toList());
+    }
 }
