@@ -15,8 +15,8 @@ public class Budget
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     String nazwa;
-    @OneToMany(mappedBy="budget")
+    @OneToMany(mappedBy="budget",fetch = FetchType.EAGER)
     Set<User> users;
-    @OneToMany(mappedBy="budget")
+    @OneToMany(mappedBy="budget",fetch = FetchType.EAGER)
     Set<Expense> expenses;
 }

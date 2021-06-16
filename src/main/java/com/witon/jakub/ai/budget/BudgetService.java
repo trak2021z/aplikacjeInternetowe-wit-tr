@@ -13,8 +13,8 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class BudgetService {
-private BudgetRepository budgetRepository;
-
+private final BudgetRepository budgetRepository;
+private final UserRepository userRepository;
 public Optional<Set<User>> loadAllUsers(Long id) {
     var budget = budgetRepository.findById(id);
     Optional<Set<User>> users = Optional.of(budget.get().getUsers());
@@ -26,6 +26,7 @@ public void createBudget(Budget budget) {
 public void addUserToBudget(Budget budget, User user) {
     var users = budget.getUsers();
     users.add(user);
+    budget.setUsers(users);
     budgetRepository.save(budget);
 }
 }
