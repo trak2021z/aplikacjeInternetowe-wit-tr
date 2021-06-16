@@ -27,20 +27,12 @@ public class BudgetController {
 
     @GetMapping("/budget-list")
     public String listUsers(Model model) {
-        System.out.println("XDDDD");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         if (userDetails.getUser().getBudget()!=null) {
-            System.out.println("LIST USERS");
             var budgetId = userDetails.getUser().getBudget().getId();
             var budgetUsers = budgetService.loadAllUsers(budgetId);
-            System.out.println(budgetUsers.isPresent());
-            budgetUsers.ifPresent(users -> {
-                for (var x : users) {
-                    System.out.println(x);
-                }
-                model.addAttribute("budgetUsers", users);
-            });
+            budgetUsers.ifPresent(users -> model.addAttribute("budgetUsers", users));
 
             return "budget-list";
         }
@@ -74,20 +66,11 @@ public class BudgetController {
     @PostMapping("/associate-user")
     public String addUserToBudget(Budget budget, @RequestParam String email)
     {
-        //1
-        System.out.println("1");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         var loggedInUseer = userDetails.getUser();
-        //2
-        System.out.println(loggedInUseer.toString());
         budget = loggedInUseer.getBudget();
-        //3
-        System.out.println(budget.toString());
-        System.out.println(email);
         var user = userService.findUserByEmail(email);
-        //4
-        System.out.println(user.toString());
         userService.setBudgetToUser(user,budget);
         budgetService.addUserToBudget(budget,user);
         return "/budget-list";
