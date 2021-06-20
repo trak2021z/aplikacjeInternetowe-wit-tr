@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Załóż konto</h1>
-<form role="form" th:action="@{/sign-up}" th:method="post" th:object="user">
+<form role="form" th:action="@{/sign-up}" th:method="post" th:object="${user}">
     <lable>Nazwa użytkownika</lable>
     <input type="text" id="name" name="name" th:field="*{nazwa}">
 

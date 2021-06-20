@@ -27,13 +27,13 @@ private final ExpenseService expenseService;
     public String listAllExpenses(Model model) {
     var expenses = expenseService.loadAllExpenses();
     model.addAttribute("expenses",expenses);
-    return "expense-list";
+    return "/expense-list";
 }
     @PostMapping("/expense-list")
     public String listAllExpensesPage(Model model) {
         var expenses = expenseService.loadAllExpenses();
         model.addAttribute("expenses",expenses);
-        return "expense-list";
+        return "/expense-list";
     }
 @GetMapping("/add-expense")
     public String addExpense(Expense expense,Model model) {
@@ -42,7 +42,7 @@ private final ExpenseService expenseService;
     return "add-expense";
 }
 @PostMapping("/add-expense")
-    public String saveExpense(Expense expense, String expenseCategoryName) {
+    public String saveExpense(Expense expense, String expenseCategoryName, Model model) {
     var categories = expenseService.loadAllCategories();
     System.out.println("Hello from saveExpense");
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -52,7 +52,8 @@ private final ExpenseService expenseService;
     expense.setBudget(budget);
     var category = expenseService.loadExpenseCategoryByCategoryname(expenseCategoryName);
     expense.setExpenseCategory(category);
-    expenseService.saveExpense(expense);
+    var expenses = expenseService.loadAllExpenses();
+    model.addAttribute("expenses",expenses);
     return "/expense-list";
 }
 }

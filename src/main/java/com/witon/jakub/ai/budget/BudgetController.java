@@ -26,6 +26,7 @@ public class BudgetController {
     private final UserService userService;
 
     @GetMapping("/budget-list")
+    @PostMapping("/budget-list")
     public String listUsers(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

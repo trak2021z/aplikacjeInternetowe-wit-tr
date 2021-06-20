@@ -26,7 +26,7 @@ public class UserController {
     String signUp(User user) {
 
         userService.signUpUser(user);
-        return "redirect:/";
+        return "redirect:/create-budget";
     }
     @GetMapping("/")
     public String xd() {
