@@ -19,6 +19,10 @@ public class ExpenseService {
     public void loadExpensesByDate(LocalDate start, LocalDate end) {
         expenseRepository.findExpensesByDateIsBetween(start,end);
     }
+
+    public ExpenseCategory loadExpenseCategoryByCategoryname(String categoryName) {
+        return expenseCategoryRepository.findByCategoryName(categoryName);
+    }
     public List<Expense> loadExpensesByDateAndCategory(LocalDate start, LocalDate end, ExpenseCategory category) {
         return expenseRepository.findExpensesByDateIsBetweenAndExpenseCategory(start,end,category);
     }

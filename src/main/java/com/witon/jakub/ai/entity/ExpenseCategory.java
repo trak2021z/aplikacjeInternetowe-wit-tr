@@ -1,7 +1,9 @@
 package com.witon.jakub.ai.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Component
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class ExpenseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

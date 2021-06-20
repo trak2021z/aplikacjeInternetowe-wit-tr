@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="ISO-8859-1">
+    <title>List Users</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
+    <h1>Lista wydatków</h1>
+</div>
 
+<div>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Kategoria</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="expense: ${expenses}">
+            <td th:text="${expense.date}"}>Data</td>
+            <td th:text="${expense.price}">Kwota</td>
+            <td th:text="${expense.getExpenseCategory().categoryName}">Kategoria</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -33,7 +33,6 @@ public class BudgetController {
             var budgetId = userDetails.getUser().getBudget().getId();
             var budgetUsers = budgetService.loadAllUsers(budgetId);
             budgetUsers.ifPresent(users -> model.addAttribute("budgetUsers", users));
-
             return "budget-list";
         }
         else {
@@ -81,5 +80,4 @@ public class BudgetController {
 
         return "/create-budget";
     }
-
 }
