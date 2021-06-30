@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -36,11 +38,14 @@ public class ExpenseService {
         expenseRepository.delete(expense);
     }
     public List<Expense> loadAllExpenses() {
-        return StreamSupport.stream(expenseRepository.findAll().spliterator(),false)
-        .collect(Collectors.toList());
+        return expenseRepository.findAllByOrderByDateDesc();
     }
     public List<ExpenseCategory> loadAllCategories() {
         return StreamSupport.stream(expenseCategoryRepository.findAll().spliterator(),false)
                 .collect(Collectors.toList());
+    }
+    public Expense loadExpenseById(Long id) {
+        final var expense = expenseRepository.findById(id);
+        return expense.orElseThrow(NoResultException::new);
     }
 }

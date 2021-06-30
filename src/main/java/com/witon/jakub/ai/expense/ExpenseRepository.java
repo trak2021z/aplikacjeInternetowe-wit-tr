@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseRepository extends CrudRepository<Expense,Long> {
+    List<Expense> findAllByOrderByDateDesc();
     List<Expense> findExpensesByDateIsBetween(LocalDate start, LocalDate end);
     List<Expense> findExpensesByExpenseCategory(ExpenseCategory category);
     List<Expense> findExpensesByDateIsBetweenAndExpenseCategory(LocalDate start, LocalDate end, ExpenseCategory category);

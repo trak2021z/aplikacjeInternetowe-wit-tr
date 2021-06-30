@@ -10,6 +10,8 @@
 <body>
 <div>
     <h1>Lista wydatków</h1>
+    <br>
+    <a href="/add-expense">Dodaj Wydatek</a>
 </div>
 
 <div>
@@ -17,8 +19,8 @@
         <thead class="thead-dark">
         <tr>
             <th>Data</th>
-            <th>Kategoria</th>
             <th>Cena</th>
+            <th>Kategoria</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +28,8 @@
             <td th:text="${expense.date}"}>Data</td>
             <td th:text="${expense.price}">Kwota</td>
             <td th:text="${expense.getExpenseCategory().categoryName}">Kategoria</td>
+            <td> <a th:href="@{edit-expense/{id}(id=${expense.id})}">Edytuj</a></td>
+            <td> <a th:href="@{delete-expense/{id}(id=${expense.id})}">Usuń</a></td>
         </tr>
         </tbody>
     </table>

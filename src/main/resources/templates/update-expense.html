@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Aktualizacja wydatku</title>
+</head>
+<body>
+<h1>Aktualizacja wydatku</h1>
+<form role="form" th:action="@{/update-expense/{id}(id=${expense.id})}" th:method="post" th:object="${expense}">
+    <input type="date" id="date" name="date" th:field="*{date}">
+    <lable>Kwota</lable>
+    <input type="text" id="price" name="price" th:field="*{price}">
+    <select th:object="${expenseCategoryName}"   th:name="expenseCategoryName">
+        <option th:each="category : ${categories}"
+                th:value="${category.getCategoryName}"
+                th:text="${category.getCategoryName}"></option>
+    </select>
+    <input type="submit" th:value="Zapisz">
+</form>
+
+</body>
+</html>
